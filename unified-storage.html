@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element combining core-localstorage and chrome-storage elements and using whichever one is appropriate. When running as a standard web page
+core-localstorage will be used. When running as a chrome packaged app chrome-storage will be used.
+
+##### Example
+
+    <unified-storage name="app-storage" value="12345"></unified-storage>
+
+@element unified-storage
+@blurb Element combining core-localstorage and chrome-storage elements and using whichever one is appropriate.
+@homepage https://github.com/broccoliboy/unified-storage
+@categories Data
+-->
+
+<link rel="import" href="../core-localstorage/core-localstorage.html">
+<link rel="import" href="../chrome-storage/chrome-storage.html">
+
+<polymer-element name="unified-storage" attributes="name value useRaw autoSaveDisabled sync" hidden>
+
+  <template>
+
+    <template if="{{isChromeApp}}">
+      <chrome-storage name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}" sync="{{sync}}"></chrome-storage>
+    </template>
+
+    <template if="{{!isChromeApp}}">
+      <core-localstorage name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}"></core-localstorage>
+    </template>
+
+  </template>
+
+  <script>
+
+    var isChromeApp = !!chrome.runtime;
+
+    Polymer({
+      isChromeApp: isChromeApp
+    });
+
+  </script>
+
+</polymer-element>
