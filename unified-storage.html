@@ -22,11 +22,11 @@ core-localstorage will be used. When running as a chrome packaged app chrome-sto
   <template>
 
     <template if="{{isChromeApp}}">
-      <chrome-storage name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}" sync="{{sync}}"></chrome-storage>
+      <chrome-storage id="chrome" name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}" sync="{{sync}}"></chrome-storage>
     </template>
 
     <template if="{{!isChromeApp}}">
-      <core-localstorage name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}"></core-localstorage>
+      <core-localstorage id="local" name="{{name}}" value="{{value}}" useRaw="{{useRaw}}" autoSaveDisabled="{{autoSaveDisabled}}"></core-localstorage>
     </template>
 
   </template>
@@ -36,7 +36,24 @@ core-localstorage will be used. When running as a chrome packaged app chrome-sto
     var isChromeApp = !!chrome.runtime;
 
     Polymer({
-      isChromeApp: isChromeApp
+      isChromeApp: isChromeApp,
+
+      load: function () {
+        if (isChromeApp) {
+          this.$.chrome.load();
+        } else {
+          this.$.local.load();
+        }
+      },
+
+      save: function () {
+        if (isChromeApp) {
+          this.$.chrome.save();
+        } else {
+          this.$.local.save();
+        }
+      }
+
     });
 
   </script>
