@@ -39,19 +39,11 @@ core-localstorage will be used. When running as a chrome packaged app chrome-sto
       isChromeApp: isChromeApp,
 
       load: function () {
-        if (isChromeApp) {
-          this.$.chrome.load();
-        } else {
-          this.$.local.load();
-        }
+		(isChromeApp) ? this.chrome.load() : this.local.load();
       },
 
       save: function () {
-        if (isChromeApp) {
-          this.$.chrome.save();
-        } else {
-          this.$.local.save();
-        }
+		(isChromeApp) ? this.$.chrome.save() : this.$.local.save();
       }
 
     });
