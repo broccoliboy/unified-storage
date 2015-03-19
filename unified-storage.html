@@ -33,7 +33,7 @@ core-localstorage will be used. When running as a chrome packaged app chrome-sto
 
   <script>
 
-    var isChromeApp = !!chrome.runtime;
+    var isChromeApp = !!(chrome.runtime && chrome.runtime.getManifest);
 
     Polymer({
       isChromeApp: isChromeApp,
