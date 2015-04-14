@@ -1,6 +1,6 @@
 {
   "name": "unified-storage",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "keywords": [
     "seed",
     "polymer",
@@ -9,7 +9,7 @@
   "main": "unified-storage.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^0.5.4",
-    "chrome-storage": "broccoliboy/chrome-storage#~0.1.4",
+    "chrome-storage": "broccoliboy/chrome-storage#~0.1.5",
     "core-localstorage": "Polymer/core-localstorage#~0.5.5"
   },
   "devDependencies": {
